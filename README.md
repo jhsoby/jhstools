@@ -1,6 +1,6 @@
 # jhstools
 **jhstools** is a collection of small scripts run by me (Jon Harald Søby). All
-of these scripts are currently (2021) run by cron on Wikimedia's Toolforge.org.
+of these scripts are currently (2021) run by cron on Wikimedia's [Toolforge.org](https://toolforge.org/).
 
 ## admineditcount.py
 This script updates the page [\[\[w:no:Wikipedia:Administratorer/liste/bidrag/automatisk\]\]](https://no.wikipedia.org/wiki/Wikipedia:Administratorer/liste/bidrag/automatisk), which is
@@ -19,7 +19,7 @@ correct apostrophe and creates a redirect from the straight apostrophe version i
 one doesn't already exist.
 
 If the bot is not able to move a page for some reason, it will instead list the page
-on the page []\[\[w:no:Bruker:JhsBot/Apostrof/Problematisk\]\]](https://no.wikipedia.org/wiki/Bruker:JhsBot/Apostrof/Problematisk).
+on the page [\[\[w:no:Bruker:JhsBot/Apostrof/Problematisk\]\]](https://no.wikipedia.org/wiki/Bruker:JhsBot/Apostrof/Problematisk).
 
 The script is set to run every night at 03:30 UTC, and will check pages that have
 been created within the last 24 hours.
