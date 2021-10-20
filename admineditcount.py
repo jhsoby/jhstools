@@ -9,7 +9,7 @@ urlparams = {
     "format": "json",
     "action": "query",
     "list": "allusers",
-    "augroup": "patroller",
+    "augroup": "sysop",
     "aulimit": "200",
     "auprop": "editcount|groups"
 }
@@ -30,12 +30,7 @@ result = "<!-- Automatisk oppdatert av JhsBot {0} -->\n".format(date.today())
 template = "*<!-- {0} --> {{{{{1}|{2}}}}}\n"
 for user in users:
     result += template.format(user[0], user[1], user[2])
-print(result)
-
-"""
 site = pywikibot.Site()
 page = pywikibot.Page(site, u"Wikipedia:Administratorer/liste/bidrag/automatisk")
-
 page.text = result
 page.save(u"bot: Oppdaterer statistikk")
-"""
