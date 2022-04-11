@@ -68,6 +68,10 @@ def move_page(movefrom, moveto):
     movedfrompage = pywikibot.Page(site, movefrom)
     movedfrompage.text = movedfrompage.text + "\n{{O fra apostrof}}"
     movedfrompage.save("bot: Legger til {{O fra apostrof}}")
+    movedtopage = pywikibot.Page(site, moveto)
+    if re.search(r"\{\{(DISPLAYTITLE|VISTITTEL):\s*" + movefrom + r"\s*\}\}", movedtopage.text):
+        movedtopage.text = re.sub(r"\{\{(DISPLAYTITLE|VISTITTEL):\s*(" + movefrom + r")\s*\}\}", "{{\\1:" + moveto + "}}", movedtopage.text)
+        movedtopage.save("bot: Endrer DISPLAYTITLE for flytta side")
     if "linkshere" in resp_pages[resp_key]:
         linkshere = resp_pages[resp_key]["linkshere"]
         for page in linkshere:
