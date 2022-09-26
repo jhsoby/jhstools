@@ -31,3 +31,12 @@ TimedText namespace (i.e. subtitles). If there are any pages, the script will mo
 them to the page name corresponding to the new file.
 
 This script is set to run once an hour on Wikimedia Commons.
+
+## interwikibot.py
+This script adds sitelinks to Wikidata for newly created wikis that use the
+{{INTERWIKI}} template from the Wikimedia Incubator. Once the sitelink has been
+added, it will remove the template from the wiki in question.
+
+This is run manually after new wikis are created and content is imported and
+Wikidata support for the site has been enabled (which can some times take several
+days after the wiki was created).
