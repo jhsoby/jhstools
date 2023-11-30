@@ -8,7 +8,9 @@ Bokmål Wikipedia.
 """
 import pywikibot
 from pywikibot.page import Page
+from datetime import datetime
 from datetime import date, timedelta
+import pytz
 
 categories = [
 	[ "Stubber {}", "{{skjult kategori}}\n\n[[Kategori:Stubber etter tid]]" ],
@@ -17,22 +19,21 @@ categories = [
 	[ "Språkvask {}", "{{skjult kategori}}\n\n[[Kategori:Språkvask]]" ]
 ]
 
-today = date.today()
-todaysmonth = today.strftime("%Y-%m")
-tomorrow = date.today() + timedelta(days=50)
-tomorrowsmonth = tomorrow.strftime("%Y-%m")
+now = datetime.now(pytz.timezone("Europe/Oslo"))
+thishoursmonth = now.strftime("%Y-%m")
+nexthoursmonth = (now + timedelta(hours=1)).strftime("%Y-%m")
 
 def main(*args: str) -> None:
 	local_args = pywikibot.handle_args(args)
 	site = pywikibot.Site("wikipedia:no")
 	site.throttle.setDelays(delay=0.1, writedelay=0.1)
 	for cat in categories:
-		catname = "Kategori:" + cat[0].format(tomorrowsmonth)
+		catname = "Kategori:" + cat[0].format(nexthoursmonth)
 		catcontent = cat[1]
 		page = Page(site,catname)
 		if not page.exists():
 			page.text = catcontent
 			page.save("bot: Oppretter månedlig vedlikeholdskategori")
 
-if todaysmonth != tomorrowsmonth:
+if thishoursmonth != nexthoursmonth:
 	main()
