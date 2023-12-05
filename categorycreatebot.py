@@ -13,7 +13,7 @@ from datetime import date, timedelta
 import pytz
 
 categories = [
-	[ "Stubber {}", "{{skjult kategori}}\n\n[[Kategori:Stubber etter tid]]" ],
+	[ "Spirer {}", "{{skjult kategori}}\n\n[[Kategori:Spirer etter tid]]" ],
 	[ "Artikler som trenger flere eller bedre referanser {}", "{{skjult kategori}}\n\n[[Kategori:Artikler som trenger flere referanser]]" ],
 	[ "Opprydning {}", "{{skjult kategori}}\n\n[[Kategori:Opprydning]]" ],
 	[ "Språkvask {}", "{{skjult kategori}}\n\n[[Kategori:Språkvask]]" ]
