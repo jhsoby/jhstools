@@ -84,23 +84,23 @@ def move_page(movefrom, moveto):
 
 
 timeformat = "%Y-%m-%dT02:00:00"
-rcparams = {
+leparams = {
     'format': 'json',
     'action': 'query',
-    'list': 'recentchanges',
-    'rcstart': datetime.now().strftime(timeformat),
-    'rcend': (datetime.now() - timedelta(days=1)).strftime(timeformat),
-    'rcdir': 'older',
-    'rclimit': 5000,
-    'rctype': 'new',
-    'rcnamespace': 0,
-    'rcprop': 'title|redirect'
+    'list': 'logevents',
+    'letype': 'create',
+    'lestart': datetime.now().strftime(timeformat),
+    'leend': (datetime.now() - timedelta(days=plusdays+1)).strftime(timeformat),
+    'ledir': 'older',
+    'lelimit': 5000,
+    'lenamespace': 0,
+    'leprop': 'title|tags'
 }
-rcresp = requests.get('https://no.wikipedia.org/w/api.php', params=rcparams).json()
-rcresp_query = rcresp["query"]["recentchanges"]
-for item in rcresp_query:
+leresp = requests.get('https://no.wikipedia.org/w/api.php', params=leparams).json()
+leresp_query = leresp["query"]["logevents"]
+for item in leresp_query:
     title = item["title"]
-    if ("redirect" in item) or (not re.search(r"['’]", title)):
+    if ("tags" in item and "mw-new-redirect" in item["tags"]) or (not re.search(r"['’]", title)):
         continue
     else:
         thisurlparams = {
